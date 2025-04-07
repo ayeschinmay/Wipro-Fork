@@ -1,0 +1,298 @@
+iteradmin@D001-38:~$ pwd
+/home/iteradmin
+iteradmin@D001-38:~$ cd Desktop/
+iteradmin@D001-38:~/Desktop$ cd Git/
+iteradmin@D001-38:~/Desktop/Git$ git init
+Initialized empty Git repository in /home/iteradmin/Desktop/Git/.git/
+iteradmin@D001-38:~/Desktop/Git$ ls -a
+.  ..  .git
+iteradmin@D001-38:~/Desktop/Git$ ls
+file.txt
+iteradmin@D001-38:~/Desktop/Git$ git status
+On branch master
+
+No commits yet
+
+nothing to commit (create/copy files and use "git add" to track)
+iteradmin@D001-38:~/Desktop/Git$ git config --global 
+usage: git config [<options>]
+
+Config file location
+    --global              use global config file
+    --system              use system config file
+    --local               use repository config file
+    --worktree            use per-worktree config file
+    -f, --file <file>     use given config file
+    --blob <blob-id>      read config from given blob object
+
+Action
+    --get                 get value: name [value-regex]
+    --get-all             get all values: key [value-regex]
+    --get-regexp          get values for regexp: name-regex [value-regex]
+    --get-urlmatch        get value specific for the URL: section[.var] URL
+    --replace-all         replace all matching variables: name value [value_regex]
+    --add                 add a new variable: name value
+    --unset               remove a variable: name [value-regex]
+    --unset-all           remove all matches: name [value-regex]
+    --rename-section      rename section: old-name new-name
+    --remove-section      remove a section: name
+    -l, --list            list all
+    -e, --edit            open an editor
+    --get-color           find the color configured: slot [default]
+    --get-colorbool       find the color setting: slot [stdout-is-tty]
+
+Type
+    -t, --type <>         value is given this type
+    --bool                value is "true" or "false"
+    --int                 value is decimal number
+    --bool-or-int         value is --bool or --int
+    --path                value is a path (file or directory name)
+    --expiry-date         value is an expiry date
+
+Other
+    -z, --null            terminate values with NUL byte
+    --name-only           show variable names only
+    --includes            respect include directives on lookup
+    --show-origin         show origin of config (file, standard input, blob, command line)
+    --default <value>     with --get, use default value when missing entry
+
+iteradmin@D001-38:~/Desktop/Git$ git config --global user.name "Md Musarraf Ansari"
+iteradmin@D001-38:~/Desktop/Git$ gedit file.txt
+iteradmin@D001-38:~/Desktop/Git$ ls
+file.txt
+iteradmin@D001-38:~/Desktop/Git$ git config --global user.email "musarrafa888@gmail.com"
+iteradmin@D001-38:~/Desktop/Git$ git config --global user.name
+Md Musarraf Ansari
+iteradmin@D001-38:~/Desktop/Git$ git config --global user.email
+musarrafa888@gmail.com
+iteradmin@D001-38:~/Desktop/Git$ echo hello >> file.txt/
+bash: file.txt/: Is a directory
+iteradmin@D001-38:~/Desktop/Git$ echo hello >> file.txt
+bash: file.txt: Is a directory
+iteradmin@D001-38:~/Desktop/Git$ gedit file
+iteradmin@D001-38:~/Desktop/Git$ echo hello >> file.txt
+bash: file.txt: Is a directory
+iteradmin@D001-38:~/Desktop/Git$ echo hello >> file
+iteradmin@D001-38:~/Desktop/Git$ cat file
+hello
+iteradmin@D001-38:~/Desktop/Git$ git add file
+iteradmin@D001-38:~/Desktop/Git$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+	new file:   file
+
+iteradmin@D001-38:~/Desktop/Git$ git commit -m "File Updated"
+[master (root-commit) 6d10cf1] File Updated
+ 1 file changed, 1 insertion(+)
+ create mode 100644 file
+iteradmin@D001-38:~/Desktop/Git$ git status
+On branch master
+nothing to commit, working tree clean
+iteradmin@D001-38:~/Desktop/Git$ git log
+commit 6d10cf1b6e63ac1b9bce0b0d855d6faf757c6b72 (HEAD -> master)
+Author: Md Musarraf Ansari <musarrafa888@gmail.com>
+Date:   Wed Apr 2 15:22:31 2025 +0530
+
+    File Updated
+iteradmin@D001-38:~/Desktop/Git$ echo test >> file
+iteradmin@D001-38:~/Desktop/Git$ cat file
+hello
+test
+iteradmin@D001-38:~/Desktop/Git$ git checkout -f
+iteradmin@D001-38:~/Desktop/Git$ cat file
+hello
+iteradmin@D001-38:~/Desktop/Git$ git file file1
+git: 'file' is not a git command. See 'git --help'.
+
+The most similar commands are
+	cat-file
+	ls-files
+iteradmin@D001-38:~/Desktop/Git$ git mv file file1
+iteradmin@D001-38:~/Desktop/Git$ git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	renamed:    file -> file1
+
+iteradmin@D001-38:~/Desktop/Git$ git ls-files
+file1
+iteradmin@D001-38:~/Desktop/Git$ gedit file2
+iteradmin@D001-38:~/Desktop/Git$ ls
+file1  file.txt
+iteradmin@D001-38:~/Desktop/Git$ gedit file2.txt
+iteradmin@D001-38:~/Desktop/Git$ ls
+file1  file2.txt  file.txt
+iteradmin@D001-38:~/Desktop/Git$ git ls-files
+file1
+iteradmin@D001-38:~/Desktop/Git$ git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	renamed:    file -> file1
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	file2.txt
+
+iteradmin@D001-38:~/Desktop/Git$ git add file2.txt 
+iteradmin@D001-38:~/Desktop/Git$ git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	renamed:    file -> file1
+	new file:   file2.txt
+
+iteradmin@D001-38:~/Desktop/Git$ git commit -m "file1 and file2 updated"
+[master d9b4bf8] file1 and file2 updated
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+ rename file => file1 (100%)
+ create mode 100644 file2.txt
+iteradmin@D001-38:~/Desktop/Git$ git log
+commit d9b4bf8984c8696d0ed85a8277239a7eda99e4c3 (HEAD -> master)
+Author: Md Musarraf Ansari <musarrafa888@gmail.com>
+Date:   Wed Apr 2 15:37:34 2025 +0530
+
+    file1 and file2 updated
+
+commit 6d10cf1b6e63ac1b9bce0b0d855d6faf757c6b72
+Author: Md Musarraf Ansari <musarrafa888@gmail.com>
+Date:   Wed Apr 2 15:22:31 2025 +0530
+
+    File Updated
+iteradmin@D001-38:~/Desktop/Git$ git branch
+* master
+iteradmin@D001-38:~/Desktop/Git$ git branch 
+HEAD     master   
+iteradmin@D001-38:~/Desktop/Git$ git branch 
+HEAD     master   
+iteradmin@D001-38:~/Desktop/Git$ git branch "Wipro"
+iteradmin@D001-38:~/Desktop/Git$ git branch 
+  Wipro
+* master
+iteradmin@D001-38:~/Desktop/Git$ git checkout Wipro
+Switched to branch 'Wipro'
+iteradmin@D001-38:~/Desktop/Git$ git status
+On branch Wipro
+nothing to commit, working tree clean
+iteradmin@D001-38:~/Desktop/Git$ gedit file3.txt
+iteradmin@D001-38:~/Desktop/Git$ git status
+On branch Wipro
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	file3.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+iteradmin@D001-38:~/Desktop/Git$ git ls-files
+file1
+file2.txt
+iteradmin@D001-38:~/Desktop/Git$ git add file3.txt 
+iteradmin@D001-38:~/Desktop/Git$ git status
+On branch Wipro
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	new file:   file3.txt
+
+iteradmin@D001-38:~/Desktop/Git$ git commit -m "File3 is Updated"
+[Wipro c7894e6] File3 is Updated
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 file3.txt
+iteradmin@D001-38:~/Desktop/Git$ git log
+commit c7894e6d22fd77559fc476d7b3dc1c71ee0edfc6 (HEAD -> Wipro)
+Author: Md Musarraf Ansari <musarrafa888@gmail.com>
+Date:   Wed Apr 2 15:52:06 2025 +0530
+
+    File3 is Updated
+
+commit d9b4bf8984c8696d0ed85a8277239a7eda99e4c3 (master)
+Author: Md Musarraf Ansari <musarrafa888@gmail.com>
+Date:   Wed Apr 2 15:37:34 2025 +0530
+
+    file1 and file2 updated
+
+commit 6d10cf1b6e63ac1b9bce0b0d855d6faf757c6b72
+Author: Md Musarraf Ansari <musarrafa888@gmail.com>
+Date:   Wed Apr 2 15:22:31 2025 +0530
+
+    File Updated
+iteradmin@D001-38:~/Desktop/Git$ git checkout master 
+Switched to branch 'master'
+iteradmin@D001-38:~/Desktop/Git$ git merge wipro
+merge: wipro - not something we can merge
+iteradmin@D001-38:~/Desktop/Git$ git merge wipro1
+merge: wipro1 - not something we can merge
+iteradmin@D001-38:~/Desktop/Git$ git merge wipro
+merge: wipro - not something we can merge
+iteradmin@D001-38:~/Desktop/Git$ git merge wipro1
+merge: wipro1 - not something we can merge
+iteradmin@D001-38:~/Desktop/Git$ git merge Wipro
+Updating d9b4bf8..c7894e6
+Fast-forward
+ file3.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 file3.txt
+iteradmin@D001-38:~/Desktop/Git$ gedit index.html
+iteradmin@D001-38:~/Desktop/Git$ git checkout wipro1
+error: pathspec 'wipro1' did not match any file(s) known to git
+iteradmin@D001-38:~/Desktop/Git$ git branch "Wipro1"
+iteradmin@D001-38:~/Desktop/Git$ git checkout Wipro1
+Switched to branch 'Wipro1'
+iteradmin@D001-38:~/Desktop/Git$ gedit index.html
+iteradmin@D001-38:~/Desktop/Git$ git merge Wipro1
+Already up to date.
+iteradmin@D001-38:~/Desktop/Git$ get merge master
+iteradmin@D001-38:~/Desktop/Git$ git merge master
+Already up to date.
+iteradmin@D001-38:~/Desktop/Git$ git status
+On branch Wipro1
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	index.html
+
+nothing added to commit but untracked files present (use "git add" to track)
+iteradmin@D001-38:~/Desktop/Git$ git ls-a
+git: 'ls-a' is not a git command. See 'git --help'.
+
+The most similar command is
+	ls-tree
+iteradmin@D001-38:~/Desktop/Git$ git log
+commit c7894e6d22fd77559fc476d7b3dc1c71ee0edfc6 (HEAD -> Wipro1, master, Wipro)
+Author: Md Musarraf Ansari <musarrafa888@gmail.com>
+Date:   Wed Apr 2 15:52:06 2025 +0530
+
+    File3 is Updated
+
+commit d9b4bf8984c8696d0ed85a8277239a7eda99e4c3
+Author: Md Musarraf Ansari <musarrafa888@gmail.com>
+Date:   Wed Apr 2 15:37:34 2025 +0530
+
+    file1 and file2 updated
+
+commit 6d10cf1b6e63ac1b9bce0b0d855d6faf757c6b72
+Author: Md Musarraf Ansari <musarrafa888@gmail.com>
+Date:   Wed Apr 2 15:22:31 2025 +0530
+
+    File Updated
+iteradmin@D001-38:~/Desktop/Git$ git branch 
+  Wipro
+* Wipro1
+  master
+iteradmin@D001-38:~/Desktop/Git$ git branch 
+HEAD        master      ORIG_HEAD   Wipro       Wipro1      
+iteradmin@D001-38:~/Desktop/Git$ git branch 
+HEAD        master      ORIG_HEAD   Wipro       Wipro1      
+iteradmin@D001-38:~/Desktop/Git$ git branch -d Wipro
+Deleted branch Wipro (was c7894e6).
+iteradmin@D001-38:~/Desktop/Git$ git branch 
+* Wipro1
+  master
+iteradmin@D001-38:~/Desktop/Git$ ^C
+iteradmin@D001-38:~/Desktop/Git$ ^C
+iteradmin@D001-38:~/Desktop/Git$ ^C
+iteradmin@D001-38:~/Desktop/Git$ ^C
+iteradmin@D001-38:~/Desktop/Git$ 
+
+
